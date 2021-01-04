@@ -1,13 +1,13 @@
 <?php
 
 // koneksi ke database
-$conn = mysqli_connect("localhost", "root", "", "phpdasar");
+$conn = mysqli_connect("localhost", "root", "", "db_ilham");
 
 function query($query){
 	global $conn;
 	$result = mysqli_query($conn, $query);
 	$rows = [];
-	while ($row = mysqli_fetch_assoc($result)){
+	while ($row = mysqli_fetch_assoc($result)){ 
 		$rows[] = $row;
 	}
 	return $rows;
@@ -33,8 +33,8 @@ function tambah($data){
 	$agama = htmlspecialchars($data["agama"]);
 
 	//query instert data
-	$query = "INSERT INTO daftarsiswa (foto, nis, nama, alamat, email, jurusan, agama)
-        VALUES ('$foto', '$nis', '$nama', '$alamat', '$email', '$jurusan', '$agama')";
+	$query = "INSERT INTO daftarsiswa
+        VALUES ('','$foto', '$nis', '$nama', '$alamat', '$email', '$jurusan', '$agama')";
 	mysqli_query($conn, $query);
 
 	return mysqli_affected_rows($conn);
@@ -99,12 +99,20 @@ function ubah($data){
 	// ambil data dari tiap elemen dalam form
 	$id = $data["id"];
 	$foto = htmlspecialchars($data["foto"]);
+	$fotoLama = htmlspecialchars($data["fotoLama"]);
 	$nis = htmlspecialchars($data["nis"]);
 	$nama = htmlspecialchars($data["nama"]);
 	$alamat = htmlspecialchars($data["alamat"]);
 	$email = htmlspecialchars($data["email"]);
 	$jurusan = htmlspecialchars($data["jurusan"]);
 	$agama = htmlspecialchars($data["agama"]);
+
+	    //cek apakah user pilih gambar baru atau tidak
+		if($_FILES['foto']['error'] === 4){
+			$foto = $fotoLama;
+		}else {
+			$foto = upload();
+		}
 
 	//query instert data
 	$query = "UPDATE daftarsiswa SET 

@@ -41,32 +41,34 @@ if(isset($_POST["submit"])){
 
 <h1>Ubah data mahasiswa</h1>
 
-<form action="" method="post">
+<form action="" method="post" enctype="multipart/form-data">
     <input type="hidden" name="id" value="<?php echo $siswa["id"]; ?>">
+	<input type="hidden" name="fotoLama" value="<?= $siswa["foto"];?>">
 	<ul>
 		<li>
 			<label for="foto">Foto : </label>
-			<input type="text" name="foto" id="foto" required value="<?php echo $siswa["foto"]; ?> autocomplete="off" ">
+			<img src="image/<?= $siswa['foto']; ?>" width ="40"> <br>
+			<input type="file" name="foto" id="foto">
 		</li>
 		<br>
 		<li>
 			<label for="nis">NIS : </label>
-			<input type="text" name="nis" id="nis" required value="<?php echo $siswa["nis"]; ?> autocomplete="off" ">
+			<input type="text" name="nis" id="nis" required value="<?php echo $siswa["nis"]; ?>  ">
 		</li>
 		<br>
 		<li>
 			<label for="nama">Nama : </label>
-			<input type="text" name="nama" id="nama" required value="<?php echo $siswa["nama"]; ?> autocomplete="off" ">
+			<input type="text" name="nama" id="nama" required value="<?php echo $siswa["nama"]; ?>  ">
 		</li>
 		<br>
 		<li>
 			<label for="alamat">Alamat : </label>
-			<input type="text" name="alamat" id="alamat" required value="<?php echo $siswa["alamat"]; ?> autocomplete="off" ">
+			<input type="text" name="alamat" id="alamat" required value="<?php echo $siswa["alamat"]; ?>  ">
 		</li>
 		<br>
 		<li>
 			<label for="email">Email : </label>
-			<input type="text" name="email" id="email" required value="<?php echo $siswa["email"]; ?> autocomplete="off" ">
+			<input type="text" name="email" id="email" required value="<?php echo $siswa["email"]; ?> ">
 		</li>
 		<br>
 		<li>
